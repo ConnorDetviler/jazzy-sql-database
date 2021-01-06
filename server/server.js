@@ -16,7 +16,7 @@ app.listen(PORT, () => {
 app.get('/artist', (req, res) => {
     console.log(`In /songs GET`);
     // res.send(artistList);
-    const queryText = `SELECT * FROM "artists";`
+    const queryText = `SELECT * FROM "artists" ORDER BY "year_born" DESC;`
     pool.query(queryText).then((result) => {
         console.log(result);
         res.send(result.rows);
