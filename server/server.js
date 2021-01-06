@@ -55,8 +55,19 @@ app.get('/song', (req, res) => {
 });
 
 app.post('/song', (req, res) => {
-    // songList.push(req.body);
-    // res.sendStatus(201);
+    // songList.push(req.body)
+    const queryText = `
+    INSERT INTO "songs" ("title", "length", "released")
+    VALUES ($1, $2, $3);`
+
+    pool.query(queryText, [req.body.title, req.body.length, req.body.released])
+    .then((result) => {
+        console.log(result);
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
 });
 
 // // TODO - Replace static content with a database tables
