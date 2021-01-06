@@ -12,7 +12,7 @@ app.listen(PORT, () => {
 });
 
 // TODO - Replace static content with a database tables
-const artistList = [ 
+const artistList = [
     {
         name: 'Ella Fitzgerald',
         birthdate: '04-25-1917'
@@ -20,7 +20,7 @@ const artistList = [
     {
         name: 'Dave Brubeck',
         birthdate: '12-06-1920'
-    },       
+    },
     {
         name: 'Miles Davis',
         birthdate: '05-26-1926'
