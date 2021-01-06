@@ -27,17 +27,36 @@ app.get('/artist', (req, res) => {
 
 app.post('/artist', (req, res) => {
     // artistList.push(req.body);
-    res.sendStatus(201);
+    // res.sendStatus(201);
+    const queryText = `
+    INSERT INTO "artists" ("artist_name", "year_born")
+    VALUES ($1, $2);`
+
+    pool.query(queryText, [req.body.name, req.body.birthdate])
+    .then((result) => {
+        console.log(result);
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
 });
 
 app.get('/song', (req, res) => {
     console.log(`In /songs GET`);
     // res.send(songList);
+    const queryText = `SELECT * FROM "songs" ORDER BY "title";`
+    pool.query(queryText).then((result) => {
+        console.log(result);
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log(error);
+    });
 });
 
 app.post('/song', (req, res) => {
     // songList.push(req.body);
-    res.sendStatus(201);
+    // res.sendStatus(201);
 });
 
 // // TODO - Replace static content with a database tables
