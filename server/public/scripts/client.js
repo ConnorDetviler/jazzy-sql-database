@@ -68,7 +68,7 @@ function getArtists() {
         method: 'GET',
         url: '/artist'
     }).then(function(response) {
-        console.log(response);
+        // console.log(response);
         const listOfArtists = response;
         renderArtists(response);
     }).catch(function (error) {
